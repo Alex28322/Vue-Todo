@@ -8,7 +8,6 @@ const todo = ref("")
 const editingId = ref(null)
 const editingText = ref("")
 
-
 function addTodo(){
   if (todo.value.trim() !== ""){
     allTodos.value.push({
@@ -32,9 +31,6 @@ function startEditing(todo) {
   editingText.value = todo.text
 
 }
-
-/* ---------------- SAVE EDIT ---------------- */
-
 function saveEdit(id) {
   const todo = allTodos.value.find(t => t.id === id)
 
@@ -44,15 +40,10 @@ function saveEdit(id) {
 
   cancelEdit()
 }
-
-/* ---------------- CANCEL ---------------- */
-
 function cancelEdit() {
   editingId.value = null
   editingText.value = ""
 }
-
-
 watch (allTodos, (newValue) => {
 localStorage.setItem("todos", JSON.stringify(newValue))
 }, {deep: true})
